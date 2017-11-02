@@ -265,4 +265,15 @@ input[type=radio]:checked + label::after {
   .mobile {
     display: block;
   }
+
+  .sidebar {
+    display: none;
+  }
+
+  #main {
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
 }
