@@ -22,6 +22,7 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  margin-bottom: .5em;
 }
 
 h1 {
@@ -291,7 +292,6 @@ a.git-link:hover {
   }
 
   h1, h2 {
-    margin-bottom: .5em;
     padding-top: .5em;
   }
 
@@ -384,11 +384,29 @@ a.git-link:hover {
       transition: all .35s;
     }
 
-    input[type=checkbox]:checked + label::after {
-      transform: rotate(315deg);
+    .spinner {
+      transform: rotate(0deg);
+      transition: .3s all;
     }
-    input[type=radio]:checked + label::after {
-      transform: rotateX(180deg);
+
+
+    .spin {
+      animation: flip .4s;
+      transform: rotate(-5deg);
+      font-size: 1.5em;
+    }
+
+    @keyframes flip {
+      0% {
+        transform: rotateX(0deg) rotate(0deg);
+        -webkit-transform: rotateX(0deg) rotate(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotate(-5deg);
+        -webkit-transform: rotateX(360deg) rotate(-5deg);
+
+      }
     }
 
   } // END MOBILE-NAV

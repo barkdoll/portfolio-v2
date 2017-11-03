@@ -35,6 +35,15 @@ jQuery(document).ready(function($){
 
   // Changes header height to match mobile navigation bar
   $('.nav-mobile').ready(function() {
+
+    $('.nav-toggle').click(function () {
+      if(!$('.spinner').hasClass('spin')) {
+        $('.spinner').addClass('spin');
+      } else {
+        $('.spinner').removeClass('spin');
+      }
+    });
+
     // var navPad = $('label.nav-toggle').height();
     // $('body').css('margin-top', navPad);
     //
@@ -47,8 +56,10 @@ jQuery(document).ready(function($){
     //   }
     // });
     // Closes menu after clicking a nav link
+
     $('.nav-mobile a').click(function() {
       $('#nav-toggle').prop('checked' , false);
+      $('.spinner').removeClass('spin');
     });
   }); // end $(.nav-mobile).ready()
 }); // end document.ready($)
