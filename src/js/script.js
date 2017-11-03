@@ -13,11 +13,10 @@ jQuery(document).ready(function($){
       var hash = this.hash;
 
       // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      // The optional number (600) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 600, function(){
-
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
@@ -34,4 +33,22 @@ jQuery(document).ready(function($){
     });
   }); // end .sidebar a
 
+  // Changes header height to match mobile navigation bar
+  $('.nav-mobile').ready(function() {
+    // var navPad = $('label.nav-toggle').height();
+    // $('body').css('margin-top', navPad);
+    //
+    // $(window).resize(function() {
+    //   if ($(this).width() <= 768) {
+    //     var navPaddd = $('label.nav-toggle').height();
+    //     $('body').css('margin-top', navPaddd);
+    //   } else {
+    //     $('body').css('margin-top', 0);
+    //   }
+    // });
+    // Closes menu after clicking a nav link
+    $('.nav-mobile a').click(function() {
+      $('#nav-toggle').prop('checked' , false);
+    });
+  }); // end $(.nav-mobile).ready()
 }); // end document.ready($)
