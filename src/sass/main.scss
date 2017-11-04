@@ -5,15 +5,12 @@ $sidebar-color: #222;
 }
 
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'PT Sans', 'Noto Sans CJK JP Regular', 'Meiryo', sans-serif;
   font-size: 18px;
   color: #222;
-}
-
-body, html {
-    height: 100%;
 }
 
 section {
@@ -278,6 +275,10 @@ a.git-link:hover {
 
 @media only screen and (max-width: 768px) {
 
+  body {
+    font-size: 1em;
+  }
+
   header, #banner {
     display: none;
   }
@@ -388,52 +389,36 @@ a.git-link:hover {
 
     }
 
-    .nav-opened p {
-      margin: 1em;
-    }
     /* :checked */
     input:checked ~ .nav-opened {
       max-height: 90vh;
     }
-    /* Icon */
-    label::after {
-      position: absolute;
-      right: 0;
-      top: 0;
-      display: block;
-      width: 3em;
-      height: 3em;
-      line-height: 3;
-      text-align: center;
-      -webkit-transition: all .35s;
-      -o-transition: all .35s;
-      transition: all .35s;
-    }
 
-    .label-left, .spinner {
+    .label-left, .spinner, .spin {
       transition: .3s all;
     }
 
     .spinner {
-      transform: rotate(0deg);
+      display: inline-block;
+      transform: rotate(0deg) translateY(0);
     }
 
 
     .spin {
       animation: flip .4s;
-      transform: rotate(-5deg) translateY(-2px);
+      transform: rotate(-5deg);
       font-size: 1.3em;
     }
 
     @keyframes flip {
       0% {
-        transform: rotateX(0deg) rotate(0deg) translateY(0);
-        -webkit-transform: rotateX(0deg) rotate(0deg) translateY(0);
+        transform: rotateX(0deg) rotate(0deg);
+        -webkit-transform: rotateX(0deg) rotate(0deg);
       }
 
       100% {
-        transform: rotateX(360deg) rotate(-5deg) translateY(-2px);
-        -webkit-transform: rotateX(360deg) rotate(-5deg) translateY(-2px);
+        transform: rotateX(360deg) rotate(-5deg);
+        -webkit-transform: rotateX(360deg) rotate(-5deg);
 
       }
     }
@@ -450,4 +435,30 @@ a.git-link:hover {
     margin: 0 auto;
   }
 
+}
+
+@media only screen and (max-width: 360px) {
+  .nav-mobile {
+    label {
+      text-align: right;
+      padding-right: 25px;
+    }
+
+    @keyframes flip {
+      0% {
+        transform: rotateX(0deg) rotate(0deg);
+        -webkit-transform: rotateX(0deg) rotate(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotate(5deg);
+        -webkit-transform: rotateX(360deg) rotate(5deg);
+      }
+    }
+
+    .spin {
+      transform: rotate(5deg) translateY(0);
+      font-size: 1em;
+    }
+  }
 }

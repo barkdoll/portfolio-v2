@@ -6,17 +6,35 @@ jQuery(document).ready(function($){
     $('.nav-toggle').click(function () {
       if(!$('.spinner').hasClass('spin')) {
         $('.spinner').addClass('spin');
-        $('.label-left').css('font-size', '1.2em');
+        // Keeps smaller font for smaller screens
+        if ($(window).width() > 360) {
+          $('.label-left').css('font-size', '1.2em');
+        }
       } else {
         $('.spinner').removeClass('spin');
-        $('.label-left').css('font-size', '1em');
+        // Keeps smaller font for smaller screens
+        if ($(window).width() > 360) {
+          $('.label-left').css('font-size', '1em');
+        }
       }
     });
 
-    $('.nav-mobile a').click(function() {
+    $('.nav-mobile a').click(function(e) {
+      e.preventDefault();
+
       $('#nav-toggle').prop('checked' , false);
       $('.spinner').removeClass('spin');
       $('.label-left').css('font-size', '1em');
+
+      var id = $(this).attr('href'),
+          target = this.hash;
+
+      $('html, body').animate({
+        scrollTop: $(id).offset().top
+      }, 500, 'swing', function() {
+          window.location.hash = target;
+      });
+
     });
   }); // end $(nav-mobile) animations
 
@@ -49,8 +67,7 @@ jQuery(document).ready(function($){
   // Scroll to section on nav link click
   nav.find('a').click(function(e) {
     e.preventDefault();
-    var el = $(this),
-        id = el.attr('href'),
+    var id = $(this).attr('href'),
         target = this.hash;
 
     $('html, body').animate({
