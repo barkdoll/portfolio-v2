@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
     });
   });
 
-  //
+  // Scroll to section on nav link click
   nav.find('a').click(function(e) {
     e.preventDefault();
     var el = $(this),
