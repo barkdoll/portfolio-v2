@@ -275,8 +275,11 @@ a.git-link:hover {
 
 @media only screen and (max-width: 768px) {
 
-  body {
-    font-size: 1em;
+  #main {
+    font-size: .95em;
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
   }
 
   header, #banner {
@@ -293,11 +296,14 @@ a.git-link:hover {
   }
 
   h1, h2 {
+    margin-top: 0em;
     padding-top: .5em;
   }
 
   article {
-    padding-top: 2.6em;
+    margin: 0;
+    padding: 0;
+    padding-top: 2.5em;
   }
 
   table { border-left: none; }
@@ -423,19 +429,17 @@ a.git-link:hover {
       }
     }
 
-  } // END .nav-mobile
+  } // .nav-mobile
+
+  .top-btn {
+    text-align: center;
+  }
 
   .sidebar {
     display: none;
   }
 
-  #main {
-    padding: 15px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-}
+} // max-width: 768px
 
 @media only screen and (max-width: 360px) {
   .nav-mobile {
@@ -460,5 +464,6 @@ a.git-link:hover {
       transform: rotate(5deg) translateY(0);
       font-size: 1em;
     }
-  }
-}
+  } // .nav-mobile
+
+} // max-width: 360px

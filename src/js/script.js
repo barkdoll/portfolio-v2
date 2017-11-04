@@ -32,7 +32,9 @@ jQuery(document).ready(function($){
       $('html, body').animate({
         scrollTop: $(id).offset().top
       }, 500, 'swing', function() {
-          window.location.hash = target;
+          // Uncomment this to add
+          // hash IDs (e.g. - #about) to page URLs
+          // window.location.hash = target;
       });
 
     });
@@ -40,7 +42,6 @@ jQuery(document).ready(function($){
 
   var sections = $('article'),
       nav = $('nav');
-
   // Scroll tracking for active link in nav
   $(window).on('scroll', function() {
     var curPos = $(this).scrollTop();
@@ -54,9 +55,6 @@ jQuery(document).ready(function($){
       if (  (curPos >= top - 100)
       &&    (curPos <= bottom - 100)  ) {
         nav.find('li').removeClass('active');
-        sections.removeClass('active');
-
-        $(this).parent().addClass('active');
         nav.find('a[href="#' + $(this).attr('id') + '"]').parent().addClass('active');
       } else if (curPos <= 100) {
         nav.find('li').removeClass('active');
@@ -64,8 +62,8 @@ jQuery(document).ready(function($){
     });
   });
 
-  // Scroll to section on nav link click
-  nav.find('a').click(function(e) {
+  // Scroll to section when clicking hash links
+  $('a[href^="#"]').click(function(e) {
     e.preventDefault();
     var id = $(this).attr('href'),
         target = this.hash;
@@ -73,7 +71,9 @@ jQuery(document).ready(function($){
     $('html, body').animate({
       scrollTop: $(id).offset().top
     }, 500, 'swing', function() {
-        window.location.hash = target;
+        // Uncomment this to add
+        // hash IDs (e.g. - #about) to page URLs
+        // window.location.hash = target;
     });
 
     return false;
