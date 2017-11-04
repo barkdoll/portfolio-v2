@@ -79,7 +79,7 @@ a:visited {
     a {
         position: relative;
         left: -3em;
-        padding: 1.5em 0;
+        padding: 1.5em 3em 1.5em 0;
         color: #fff;
         text-decoration: none;
         transition: 1s all;
@@ -313,15 +313,20 @@ a.git-link:hover {
     overflow: hidden;
     transition: .35s all;
     z-index: 99;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      display: block;
-      background-color: none;
+    .bg {
+      z-index: 1;
+      opacity: .4;
+      height: 60%;
+      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(20%, 6em);
     }
 
     a {
@@ -351,6 +356,14 @@ a.git-link:hover {
       font-weight: bold;
       line-height: 3;
       cursor: pointer;
+      z-index: 10;
+    }
+
+    .label-left {
+      text-align: left;
+      position: fixed;
+      left: 15px;
+      top: 0;
     }
 
     .nav-opened {
@@ -360,6 +373,19 @@ a.git-link:hover {
       -webkit-transition: max-height .35s;
       -o-transition: max-height .35s;
       transition: max-height .35s;
+
+      ul {
+        z-index: 88;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        z-index: 99;
+        display: block;
+        background-color: none;
+      }
+
     }
 
     .nav-opened p {
@@ -384,32 +410,35 @@ a.git-link:hover {
       transition: all .35s;
     }
 
+    .label-left, .spinner {
+      transition: .3s all;
+    }
+
     .spinner {
       transform: rotate(0deg);
-      transition: .3s all;
     }
 
 
     .spin {
       animation: flip .4s;
-      transform: rotate(-5deg);
-      font-size: 1.5em;
+      transform: rotate(-5deg) translateY(-2px);
+      font-size: 1.3em;
     }
 
     @keyframes flip {
       0% {
-        transform: rotateX(0deg) rotate(0deg);
-        -webkit-transform: rotateX(0deg) rotate(0deg);
+        transform: rotateX(0deg) rotate(0deg) translateY(0);
+        -webkit-transform: rotateX(0deg) rotate(0deg) translateY(0);
       }
 
       100% {
-        transform: rotateX(360deg) rotate(-5deg);
-        -webkit-transform: rotateX(360deg) rotate(-5deg);
+        transform: rotateX(360deg) rotate(-5deg) translateY(-2px);
+        -webkit-transform: rotateX(360deg) rotate(-5deg) translateY(-2px);
 
       }
     }
 
-  } // END MOBILE-NAV
+  } // END .nav-mobile
 
   .sidebar {
     display: none;

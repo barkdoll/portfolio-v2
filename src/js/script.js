@@ -1,65 +1,64 @@
 jQuery(document).ready(function($){
 
-  // Add smooth scrolling to all links
-  $(".nav-menu a").click(function(e) {
-
-    $('.nav-menu li').removeClass('active');
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      e.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (600) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 600, function(){
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-
-    // Takes out the unique part from the base URL
-    var target = $('.sidebar a[href="' + this.hash + '"]');
-    // Add active class to target link
-    target.parent().addClass('active');
-
-    // Prevents click-through to the page you are on by disabling default hyperlink behavior for active links
-    target.bind('click', function(e){
-        e.preventDefault();
-    });
-  }); // end .sidebar a
-
-  // Changes header height to match mobile navigation bar
+  // Mobile navigation animation
   $('.nav-mobile').ready(function() {
 
     $('.nav-toggle').click(function () {
       if(!$('.spinner').hasClass('spin')) {
         $('.spinner').addClass('spin');
+        $('.label-left').css('font-size', '1.2em');
       } else {
         $('.spinner').removeClass('spin');
+        $('.label-left').css('font-size', '1em');
       }
     });
-
-    // var navPad = $('label.nav-toggle').height();
-    // $('body').css('margin-top', navPad);
-    //
-    // $(window).resize(function() {
-    //   if ($(this).width() <= 768) {
-    //     var navPaddd = $('label.nav-toggle').height();
-    //     $('body').css('margin-top', navPaddd);
-    //   } else {
-    //     $('body').css('margin-top', 0);
-    //   }
-    // });
-    // Closes menu after clicking a nav link
 
     $('.nav-mobile a').click(function() {
       $('#nav-toggle').prop('checked' , false);
       $('.spinner').removeClass('spin');
+      $('.label-left').css('font-size', '1em');
     });
-  }); // end $(.nav-mobile).ready()
-}); // end document.ready($)
+  }); // end $(nav-mobile) animations
+
+  var sections = $('article'),
+      nav = $('nav');
+
+  // Scroll tracking for active link in nav
+  $(window).on('scroll', function() {
+    var curPos = $(this).scrollTop();
+
+    sections.each(function() {
+      var top = $(this).offset().top,
+          bottom = top + $(this).outerHeight();
+
+      // The (top/btm - 100) offsets the active class
+      // to execute 100px above the section from the top of the window
+      if (  (curPos >= top - 100)
+      &&    (curPos <= bottom - 100)  ) {
+        nav.find('li').removeClass('active');
+        sections.removeClass('active');
+
+        $(this).parent().addClass('active');
+        nav.find('a[href="#' + $(this).attr('id') + '"]').parent().addClass('active');
+      } else if (curPos <= 100) {
+        nav.find('li').removeClass('active');
+      }
+    });
+  });
+
+  //
+  nav.find('a').click(function(e) {
+    e.preventDefault();
+    var el = $(this),
+        id = el.attr('href'),
+        target = this.hash;
+
+    $('html, body').animate({
+      scrollTop: $(id).offset().top
+    }, 500, 'swing', function() {
+        window.location.hash = target;
+    });
+
+    return false;
+  });
+}); // end $(document).ready()
