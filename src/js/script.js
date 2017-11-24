@@ -3,19 +3,25 @@ jQuery(document).ready(function($){
   // Mobile navigation animation
   $('.nav-mobile').ready(function() {
 
+    var label = $('label.nav-toggle');
+
     $('.nav-toggle').click(function () {
-      if(!$('.spinner').hasClass('spin')) {
-        $('.spinner').addClass('spin');
-        // Keeps smaller font for smaller screens
-        if ($(window).width() > 360) {
+      if(!label.hasClass('opened')) {
+        label.addClass('opened');
+
+        if ($(window).width() > 400 ) {
           $('.label-left').css('font-size', '1.2em');
         }
+
+        $('.spinner').addClass('spin');
       } else {
+        label.removeClass('opened');
         $('.spinner').removeClass('spin');
-        // Keeps smaller font for smaller screens
-        if ($(window).width() > 360) {
+
+        if ($(window).width() > 400 ) {
           $('.label-left').css('font-size', '1em');
         }
+
       }
     });
 
@@ -23,6 +29,7 @@ jQuery(document).ready(function($){
       e.preventDefault();
 
       $('#nav-toggle').prop('checked' , false);
+      label.removeClass('opened');
       $('.spinner').removeClass('spin');
       $('.label-left').css('font-size', '1em');
 
@@ -32,8 +39,8 @@ jQuery(document).ready(function($){
       $('html, body').animate({
         scrollTop: $(id).offset().top
       }, 500, 'swing', function() {
-          // Uncomment this to add
-          // hash IDs (e.g. - #about) to page URLs
+          // Adds hash IDs (e.g. - #about) to page URL
+          // Doesn't seem to work here, only on nav link click below (see ~ line 81-82)
           // window.location.hash = target;
       });
 
@@ -71,8 +78,7 @@ jQuery(document).ready(function($){
     $('html, body').animate({
       scrollTop: $(id).offset().top
     }, 500, 'swing', function() {
-        // Uncomment this to add
-        // hash IDs (e.g. - #about) to page URLs
+        // This line adds hash IDs (e.g. - #about) to the page URL
         // window.location.hash = target;
     });
 

@@ -1,0 +1,68 @@
+[
+	{
+		"name": "Dictionary Inject",
+		"subtitle": "辞書-Inject",
+		"description": "An HTML generator for making lists of dictionary entries and definitions for input on digital flashcards.",
+    "projID": "jisho-inject",
+		"image": "../build/img/jisho-screenshot.png",
+    "liveUrl": "https://jessebarkdoll.com/projects/jisho-inject/english.htm",
+    "stack": [ "html5", "css3", "javascript", "atom" ],
+    "gitLink": "https://github.com/barkdoll/jisho-inject",
+		"publicSrc": true
+	},
+  {
+    "name": "Kotowaza Bot",
+		"subtitle": "ことわざ Bot",
+		"description": "A Node.js twitter bot sending out small bits of Japanese wisdom every hour 24/7.",
+    "projID": "kotowaza-bot",
+    "image": "../build/img/kotowaza-screenshot.png",
+    "liveUrl": "https://twitter.com/random_kotowaza",
+    "stack": [ "nodejs", "heroku", "twitter", "atom" ],
+    "gitLink": "https://github.com/barkdoll/kotowaza-bot",
+		"publicSrc": true
+  },
+  {
+    "name": "Daijirin Scraper",
+		"subtitle": "大辞林 スクレーパー",
+		"description": "Successor to the Dictionary Inject app. A command-line web scraping tool for grabbing dictionary definitions that automatically parses the html of definition lists.",
+    "projID": "daijirin-scraper",
+    "image": "../build/img/daijiscrape-screenshot.png",
+    "liveUrl": "",
+    "stack": [ "python", "pycharm" ],
+    "gitLink": "https://github.com/barkdoll/daijirin-scraper#readme",
+		"publicSrc": true
+  },
+  {
+    "name": "Pokevue",
+		"subtitle": "",
+		"description": "An online, interactive, animated pokedex built with Vue.js and the PokeAPI.",
+    "projID": "pokevue",
+    "image": "../build/img/rac-screenshot.png",
+    "liveUrl": "https://jessebarkdoll.com/projID",
+		"stack": [ "vuejs", "css3", "atom" ],
+    "gitLink": "",
+		"publicSrc": false
+  },
+	{
+		"name": "Bowling Calculator",
+		"subtitle": "",
+		"description": "Calculate the score of a bowling game. Complete with strikes, spares, and gutterballs.",
+    "projID": "bowling-calculator",
+		"image": "../build/img/bowling-screenshot.png",
+    "liveUrl": "https://jessebarkdoll.com/projects/bowling-calc/index.htm",
+    "stack": [ "html5", "css3", "javascript", "atom" ],
+    "gitLink": "https://github.com/barkdoll/bowling-calculator",
+		"publicSrc": true
+	},
+	{
+    "name": "The Budget App",
+		"subtitle": "",
+		"description": "Track your income and expenses for the month.",
+    "projID": "budget-app",
+    "image": "../build/img/budget-screenshot.png",
+    "liveUrl": "https://jessebarkdoll.com/projects/budget-app/index.htm",
+    "stack": [ "html5", "css3", "javascript", "atom" ],
+    "gitLink": "https://github.com/barkdoll/budget-app",
+		"publicSrc": true
+	}
+]

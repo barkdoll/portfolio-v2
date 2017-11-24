@@ -8,9 +8,25 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', 'Noto Sans CJK JP Regular', 'Meiryo', sans-serif;
+  font-family: 'Source Sans Pro', 'Fira Sans', 'PT Sans', 'Noto Sans', 'Meiryo', sans-serif;
   font-size: 18px;
   color: #222;
+}
+
+body {
+  font-family: 'Fira Sans', 'PT Sans', 'Noto Sans', sans-serif;
+  line-height: 1.3;
+}
+
+p {
+  font-family: 'Fira Sans', 'PT Sans', 'Noto Sans', sans-serif;
+}
+
+.nihongo {
+  font-family: 'Noto Sans', 'Noto Sans CJK JP Regular', 'Meiryo', 'Hirgino Gothic Pro W3', 'MS Gothic', sans-serif;
+  * {
+    font-family: 'Noto Sans', 'Noto Sans CJK JP Regular', 'Meiryo', 'Hirgino Gothic Pro W3', 'MS Gothic', sans-serif;
+  }
 }
 
 section {
@@ -18,13 +34,30 @@ section {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
   margin: 0;
   margin-bottom: .5em;
 }
 
 h1 {
   font-size: 2em;
-  padding-top: .8em;
+  padding-top: 1.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: .5em;
+}
+
+.title {
+  font-family: 'Noto Sans', 'PT Sans', 'Fira Sans', 'Meiryo', sans-serif;
+  color: rgb(44, 44, 44);
+}
+
+.subtitle {
+  font-family: 'Noto Sans', 'PT Sans', 'Fira Sans', 'Meiryo', sans-serif;
+  color: rgb(64, 64, 64);
 }
 
 .hide { display: none; }
@@ -42,10 +75,6 @@ h1 {
 ::-moz-selection {
   color: #00d4ad;
   background: rgba(20, 20, 20, 1); /* WebKit/Blink Browsers */
-}
-
-.nihongo {
-  font-family: 'Noto Sans CJK JP Regular', 'Meiryo', sans-serif;
 }
 
 
@@ -73,9 +102,11 @@ a:visited {
   background-color: $sidebar-color;
 
   .nav-menu {
+
     a {
+        font-family: 'Fira Sans', 'PT Sans', sans-serif;
+        font-weight: normal;
         position: relative;
-        left: -3em;
         padding: 1.5em 3em 1.5em 0;
         color: #fff;
         text-decoration: none;
@@ -167,11 +198,30 @@ header {
   width: 75.1%;
   clear: right;
   float: right;
-  overflow: scroll;
+  overflow-y: hidden;
 }
 
 article {
   max-width: 750px;
+
+  li {
+    margin-left: 1.5em;
+    list-style-type: disc;
+  }
+}
+
+article#portfolio {
+  max-width: 100%;
+  width: 100%;
+
+  h2.title {
+    font-size: 1.4em;
+    margin-top: 0;
+  }
+
+  h3.title {
+    font-size: 1.2em;
+  }
 }
 
 
@@ -190,11 +240,11 @@ td.more-left {
   padding-left: 35px;
 }
 
-a.git-link {
+a.github-icon {
     color: #555;
 }
 
-a.git-link:hover {
+a.github-icon:hover {
     color: #1abc9c;
 }
 
@@ -266,20 +316,272 @@ a.git-link:hover {
 
 } /* END ACCORDION STYLES */
 
-
-@media only screen and (max-width: 1024px) {
-    #banner {
-        background-attachment: scroll;
-    }
+.card {
+  margin-bottom: 2em;
+  /* -------------------
+  box-shadow: offset-x | offset-y | blur-radius | spread-radius | color ***/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.24), 0 6px 6px rgba(0,0,0,0.28);
 }
 
+.card-thumbnail {
+  min-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  /*border-bottom: 1px solid #ccc;*/
+}
+
+.live-link {
+  height: 100%;
+}
+
+.img-cont {
+  position: relative;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00d49c;
+  opacity: .8;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  -webkit-clip-path: polygon(0 0, 100% 60%, 100% 100%, 0% 100%);
+clip-path: polygon(0 0, 100% 60%, 100% 100%, 0% 100%);
+  transition: .2s ease;
+}
+
+.overlay-text {
+  color: white;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1em;
+  position: absolute;
+  overflow: hidden;
+  top: 57%;
+  left: 30%;
+  transform: translate(-50%, -50%) rotate(8deg);
+  -ms-transform: translate(-50%, -50%) rotate(8deg);
+}
+
+.img-cont:hover .overlay {
+  height: 50%;
+}
+
+
+.card-detail {
+  padding: 0.75rem;
+  display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+p {
+
+}
+
+
+#portfolio .title {
+  font-weight: bold;
+  word-wrap: normal;
+  padding-bottom: 0;
+  /*text-transform: uppercase;*/
+}
+
+
+#portfolio .subtitle {
+  font-weight: bold;
+  margin-bottom: .75rem;
+}
+
+.stack {
+  margin: 0 0 .75em;
+  width: 100%;
+  font-size: 2.25vw;
+  font-family: "devicon";
+  display: flex;
+  flex-flow: row wrap;
+    justify-content: center;
+
+  i {
+    color: hsl(161, 100%, 41%);
+    padding: .75em 10px .25em;
+    transition: .2s transform;
+  }
+
+  i:hover {
+    color: rgb(44, 44, 44);
+    transform: translateY(-.5rem);
+  }
+}
+
+.link-wrap {
+  align-self: flex-end;
+}
+
+.git-link {
+  font-size: .9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1.1em .7em;
+  color: #2E086E;
+  border-color: #2E086E;
+  transition: .2s all;
+}
+
+.link-wrap:hover > .git-link {
+  background: #2E086E;
+  color: #fff;
+  border-color: #2E086E;
+  transform: rotateY(180deg) scaleX(-1) rotate(-2deg);
+  -moz-transform: rotateY(180deg) scaleX(-1) rotate(-2deg);
+  -webkit-transform: rotateY(180deg) scaleX(-1) rotate(-2deg);
+}
+
+.github:before, .gitlab:before, .project:before {
+  font-weight: normal;
+}
+
+.git-link.github:before {
+  font-family: "FontAwesome";
+  content: "\f09b";
+  font-size: 1.6em;
+  padding-right: .5rem;
+}
+
+.git-link.gitlab:before {
+  font-family: "FontAwesome";
+  content: "\f296";
+  font-size: 1.4em;
+  padding-right: .5rem;
+}
+
+.git-link.project:before {
+  display: inline-block;
+  font-family: "FontAwesome";
+  transform: rotate(-15deg);
+  content: "\f1e2";
+  font-size: 1.4em;
+  padding-right: .5rem;
+}
+
+
+/* END PORTFOLIO STYLES */
+
+
+@media screen and (max-width: 1024px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  #banner {
+      background-attachment: scroll;
+  }
+
+  #main {
+    padding: 0 1em 1em 3em;
+  }
+
+  article#portfolio {
+    width: 90%;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+  .card-thumbnail {
+    border-bottom: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.24), 0 8px 6px rgba(0,0,0,0.28);
+  }
+
+  .overlay-text {
+    font-size: 2em;
+  }
+
+  .card-detail {
+    padding: 0 2px;
+
+    p {
+      margin: 1em 0;
+    }
+  }
+
+  .stack {
+    font-size: 3em;
+    padding-top: 0;
+
+    i {
+      padding: .25em 10px 0em;
+    }
+  }
+
+  .link-wrap {
+    align-self: center;
+  }
+
+  .git-link {
+    padding: 1.5em 2em;
+    transition: none;
+    background: #2E086E;
+    box-shadow: none;
+
+    color: #fff;
+    border: none;
+  }
+
+  .link-wrap:hover > .git-link {
+    background: hsl(161, 100%, 41%);
+    color: #000;
+    border: none;
+    box-shadow: none;
+    transform: none;
+    -moz-transform: none;
+    -webkit-transform: none;
+  }
+}
+
+
 @media only screen and (max-width: 768px) {
+
+  body {
+    font-size: 18px;
+  }
+
+  article {
+    font-size: .9em;
+    margin: 0;
+    padding-top: 2.5em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .3em;
+  }
+
+  h1 { font-size: 2.2em; padding-top: .8em }
+  h2 { font-size: 1.8em; }
 
   #main {
     font-size: .95em;
     padding: 15px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  article#portfolio {
+    width: 100%;
+  }
+
+  p {
+    margin: 0em auto .4em;
   }
 
   header, #banner {
@@ -293,17 +595,6 @@ a.git-link:hover {
     left: 0;
     width: 100%;
     height: 0px;
-  }
-
-  h1, h2 {
-    margin-top: 0em;
-    padding-top: .5em;
-  }
-
-  article {
-    margin: 0;
-    padding: 0;
-    padding-top: 2.5em;
   }
 
   table { border-left: none; }
@@ -328,12 +619,12 @@ a.git-link:hover {
     .bg {
       z-index: 1;
       opacity: .4;
-      height: 60%;
+      height: 50%;
       margin: 0 auto;
       position: absolute;
-      top: 0;
-      left: 0;
-      transform: translate(20%, 6em);
+      top: 30%;
+      left: 20px;
+      // transform: translate(20%, 6em);
     }
 
     a {
@@ -400,7 +691,7 @@ a.git-link:hover {
       max-height: 90vh;
     }
 
-    .label-left, .spinner, .spin {
+    label, .label-left, .spinner, .spin {
       transition: .3s all;
     }
 
@@ -413,7 +704,7 @@ a.git-link:hover {
     .spin {
       animation: flip .4s;
       transform: rotate(-5deg);
-      font-size: 1.3em;
+      font-size: 1.2em;
     }
 
     @keyframes flip {
@@ -439,9 +730,26 @@ a.git-link:hover {
     display: none;
   }
 
+  .overlay-text {
+    font-size: 1.5em;
+    left: 25%;
+  }
+
+  .stack {
+    i:hover {
+      transform: translateY(0);
+    }
+  }
+
 } // max-width: 768px
 
-@media only screen and (max-width: 360px) {
+@media screen and (max-width: 480px) {
+  // .overlay-text {
+  //   left: 23%;
+  // }
+}
+
+@media only screen and (max-width: 400px) {
   .nav-mobile {
     label {
       text-align: right;
@@ -464,6 +772,7 @@ a.git-link:hover {
       transform: rotate(5deg) translateY(0);
       font-size: 1em;
     }
+
   } // .nav-mobile
 
-} // max-width: 360px
+} // max-width: 400px

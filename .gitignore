@@ -35,6 +35,9 @@ build/Release
 # Compiled website code
 build/
 
+# Module development directory
+fetch-test/
+
 # Dependency directories
 node_modules/
 jspm_packages/

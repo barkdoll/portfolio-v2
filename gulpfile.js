@@ -1,11 +1,12 @@
 const gulp = require('gulp');
-const imagemin = require('gulp-imagemin');
+const imageMin = require('gulp-imagemin');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const minifyCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
+const server = require('gulp-webserver');
 
 /* -- TOP LEVEL FUNCTIONS --
 
@@ -25,10 +26,15 @@ gulp.task('copyHTML', () => {
     .pipe(gulp.dest('build'));
 });
 
+gulp.task('copyFonts', () => {
+  gulp.src('src/fonts/*')
+    .pipe(gulp.dest('build/fonts'))
+});
+
 // Optimize Images
 gulp.task('imageMin', () => {
   gulp.src('src/img/*')
-    .pipe(imagemin())
+    .pipe(imageMin())
     .pipe(gulp.dest('build/img'));
 });
 
@@ -37,30 +43,43 @@ gulp.task('javascript', () => {
   gulp.src('src/js/*.js')
     .pipe(babel())
     .pipe(concat('script.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 });
 
-// Compile SASS and minify production CSS
 gulp.task('css', () => {
-  gulp.src('src/sass/*.scss')
-    .pipe(sass().on('error', sass.logError))
+  gulp.src('src/css/*.css')
     .pipe(minifyCSS())
-    .pipe(rename('style.css'))
     .pipe(gulp.dest('build/css'));
 });
 
-// Log finished
-gulp.task('end', () => {
-  return console.log('Gulp finished.');
+// Compile SASS and minify production CSS
+gulp.task('sass', () => {
+  gulp.src('src/sass/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(minifyCSS())
+    .pipe(
+      rename('style.css')
+    )
+    .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('default', ['init', 'imageMin', 'javascript', 'css', 'copyHTML', 'end']);
+gulp.task('default', ['init', 'javascript', 'css', 'sass', 'copyHTML', 'copyFonts']);
 
 // Watches for changes to avoid repetetive running of gulp command
 gulp.task('watch', () => {
   gulp.watch('src/img/*', ['imageMin']);
   gulp.watch('src/js/*.js', ['javascript']);
-  gulp.watch('src/sass/*.scss', ['css']);
+  gulp.watch('src/css/*.css', ['css'])
+  gulp.watch('src/sass/*.scss', ['sass']);
   gulp.watch('src/*.htm', ['copyHTML']);
+});
+
+gulp.task('server', () => {
+  gulp.src('./')
+    .pipe(server({
+      livereload: true,
+      directoryListing: true,
+      open: true
+    }));
 });
