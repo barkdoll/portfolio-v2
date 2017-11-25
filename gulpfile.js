@@ -1,15 +1,16 @@
-const gulp = require('gulp');
-const imageMin = require('gulp-imagemin');
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-const sass = require('gulp-sass');
-const minifyCSS = require('gulp-clean-css');
-const rename = require('gulp-rename');
-const server = require('gulp-webserver');
+const gulp = require('gulp'),
+imageMin = require('gulp-imagemin'),
+babel = require('gulp-babel'),
+uglify = require('gulp-uglify'),
+concat = require('gulp-concat'),
+sass = require('gulp-sass'),
+minifyCSS = require('gulp-clean-css'),
+rename = require('gulp-rename'),
+server = require('gulp-webserver'),
+php = require('gulp-connect-php'),
+browserSync = require('browser-sync');
 
 /* -- TOP LEVEL FUNCTIONS --
-
   gulp.task - define tasks
   gulp.src - point to files to use
   gulp.dest - points to folder to output
@@ -21,9 +22,13 @@ gulp.task('init', () => {
 });
 
 // Copy all HMTL files
-gulp.task('copyHTML', () => {
+gulp.task('copyRoot', () => {
   gulp.src('src/*.htm')
     .pipe(gulp.dest('build'));
+  gulp.src('src/*.php')
+    .pipe(gulp.dest('build'));
+  gulp.src('src/templates/*.htm')
+  .pipe(gulp.dest('build/templates'));
 });
 
 gulp.task('copyFonts', () => {
@@ -64,7 +69,7 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('default', ['init', 'javascript', 'css', 'sass', 'copyHTML', 'copyFonts']);
+gulp.task('default', ['init', 'javascript', 'css', 'sass', 'copyRoot', 'copyFonts']);
 
 // Watches for changes to avoid repetetive running of gulp command
 gulp.task('watch', () => {
@@ -75,11 +80,31 @@ gulp.task('watch', () => {
   gulp.watch('src/*.htm', ['copyHTML']);
 });
 
-gulp.task('server', () => {
-  gulp.src('./')
-    .pipe(server({
-      livereload: true,
-      directoryListing: true,
-      open: true
-    }));
+// Server with gulp-php-connect
+gulp.task('php', () => {
+  php.server({
+    hostname: 'localhost',
+    bin: 'C:/MAMP/bin/php/php7.1.5/php.exe',
+    ini: 'C:/MAMP/bin/php/php7.1.5/php.ini',
+    port: 8000,
+    base: 'C:/Users/mango/dev/portfolio-v2/build',
+    livereload: true
+  });
 });
+
+gulp.task('end-php', function() {
+    php.closeServer();
+});
+
+
+
+
+// Server with gulp-webserver
+// gulp.task('server', () => {
+//   gulp.src('./')
+//     .pipe(server({
+//       livereload: true,
+//       directoryListing: true,
+//       open: true
+//     }));
+// });

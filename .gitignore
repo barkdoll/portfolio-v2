@@ -35,8 +35,9 @@ build/Release
 # Compiled website code
 build/
 
-# Module development directory
+# Module development directories
 fetch-test/
+phpmailer/
 
 # Dependency directories
 node_modules/

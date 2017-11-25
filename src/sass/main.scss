@@ -1,4 +1,5 @@
 $sidebar-color: #222;
+$standard-font-set: 'Fira Sans', 'Noto Sans CJK JP Regular', 'Noto Sans', 'PT Sans', 'Meiryo', sans-serif;
 
 #contact {
   height: 800px;
@@ -48,6 +49,54 @@ h1 {
 h2 {
   font-size: 1.5em;
   margin-top: .5em;
+}
+
+
+form > h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  font-family: $standard-font-set;
+  border: 1px solid rgb(100, 100, 100);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  transition: .2s box-shadow;
+}
+
+input { font-size: 1.2em; }
+textarea { font-size: 1em; }
+
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 5px 0px hsl(161, 100%, 41%);
+  outline: none;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: .5em .75em;
+  border: none;
+  transition: .2s transform;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  cursor: pointer;
+  transform: translateY(-4px);
+}
+
+input[type="submit"] {
+  background-color: hsl(161,100%,41%);
+}
+
+input[type="reset"] {
+  background-color: hsl(0, 70%, 30%);
 }
 
 .title {
@@ -538,8 +587,8 @@ p {
   }
 
   .link-wrap:hover > .git-link {
-    background: hsl(161, 100%, 41%);
-    color: #000;
+    background: #000;
+    color: hsl(161, 100%, 41%);
     border: none;
     box-shadow: none;
     transform: none;
