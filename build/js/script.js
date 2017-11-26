@@ -120,7 +120,10 @@ jQuery(document).ready(function ($) {
   // Mobile navigation animation
   $('.nav-mobile').ready(function () {
 
-    var label = $('label.nav-toggle');
+    var label = $('label.nav-toggle'),
+        navHeight = label.height().toString();
+
+    $('#primary').css('top', navHeight + 'px');
 
     $('.nav-toggle').click(function () {
       if (!label.hasClass('opened')) {
@@ -150,14 +153,17 @@ jQuery(document).ready(function ($) {
       $('.label-left').css('font-size', '1em');
 
       var id = $(this).attr('href'),
-          target = this.hash;
+          target = this.hash,
 
-      $('html, body').animate({
-        scrollTop: $(id).offset().top
+      // Grabs # of pixels = mobile navbar height
+      top = $(id).offset().top - navHeight;
+
+      $('html').animate({
+        scrollTop: top
       }, 500, 'swing', function () {
         // Adds hash IDs (e.g. - #about) to page URL
         // Doesn't seem to work here, only on nav link click below (see ~ line 81-82)
-        // window.location.hash = target;
+        window.location.hash = target;
       });
     });
   }); // end $(nav-mobile) animations
@@ -189,13 +195,33 @@ jQuery(document).ready(function ($) {
     var id = $(this).attr('href'),
         target = this.hash;
 
-    $('html, body').animate({
+    $('html').animate({
       scrollTop: $(id).offset().top
     }, 500, 'swing', function () {
       // This line adds hash IDs (e.g. - #about) to the page URL
-      // window.location.hash = target;
+      window.location.hash = target;
     });
 
     return false;
   });
 }); // end $(document).ready()
+
+
+//////////////////////////////////////////////////////////////////////
+// Get the height of the header
+// var headerHeight = $("div#header").height();
+// // Attach the click event
+// $('a[href*=#]').bind("click", function(e) {
+//
+//     var target = $(this).attr("href"); //Get the target
+//     var scrollToPosition = $(target).offset().top - headerHeight;
+//
+//     $('html').animate({
+//       'scrollTop': scrollToPosition
+//     }, 600, function(target){
+//         window.location.hash = target;
+//     });
+//
+//     e.preventDefault();
+// });
+//////////////////////////////////////////////////////////////////////

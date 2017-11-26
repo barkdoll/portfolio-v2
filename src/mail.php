@@ -49,8 +49,6 @@
   $mail->Subject = $contact_subject . ' - ' . $contact_name;
   $mail->Body = '<h2 style="margin:5px 0 0"><span style="font-weight:normal">送信者： </span>' . $contact_name . '</h2><h2 style="margin:5px 0 0"><span style="font-weight:normal">メール： </span>' . $contact_email . '</h2><pre  style="font-family:\'Noto Sans\',\'Noto Sans CJK JP\',\'Helvetica\',\'Arial\',\'Meiryo\',sans-serif;font-size:16px">' . $contact_message . '</pre>';
   $mail->AltBody = 'From: ' . $contact_name . ' \nEmail: ' . $contact_email . ' \n\n' .$contact_message;
-  // Optional attachment property
-  // $mail->addAttachment(dirname(__FILE__) . '/example.pdf', 'sample.pdf');
 ?>
 
 
