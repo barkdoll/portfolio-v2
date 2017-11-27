@@ -8,4 +8,6 @@
   <link rel="stylesheet" href="css/font-awesome.min.css" />
   <link rel="stylesheet" href="css/devicon.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
