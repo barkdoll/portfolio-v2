@@ -26,15 +26,15 @@ jQuery(document).ready(function($){
       }); // end $(.nav-toggle)
 
 
-      // $(window).resize(function () {
-      //   // Compensates extra height on
-      //   // #primary content section for mobile navbar
-      //   if ($(window).width() > 768) {
-      //     $('#primary').css('top', '0');
-      //   } else {
-      //     $('#primary').css('top', navHeight.toString() + 'px');
-      //   }
-      // });
+      $(window).resize(function () {
+        // Compensates extra height on
+        // #primary content section for mobile navbar
+        if ($(window).width() > 768) {
+          $('#primary').css('top', '0');
+        } else {
+          $('#primary').css('top', navHeight.toString() + 'px');
+        }
+      });
 
       $('.nav-mobile a').click(function(e) {
         e.preventDefault();
@@ -94,8 +94,80 @@ jQuery(document).ready(function($){
           // window.location.hash = target;
       });
     }
-
     return false;
   });
+
+  // get all input fields except for type='submit'
+  var requiredFields = $("input[name='name'], input[name='email'], textarea[name='message']");
+
+
+  validate(requiredFields);
+  requiredFields.on('keyup', function() {
+    validate(requiredFields);
+  });
+  $('input[type=reset]').click(function() {
+    validate(requiredFields);
+  });
+
+  function validate(fields) {
+
+    var fieldsWithValues = 0;
+
+    fields.each(function(e) {
+      // if it has a value, increment the counter
+      if ($(this).val()) {
+        fieldsWithValues += 1;
+      }
+    });
+
+    if (fieldsWithValues == requiredFields.length) {
+      $("input[type=submit]").prop("disabled", false);
+      return true;
+    } else {
+      $("input[type=submit]").prop("disabled", true);
+      return false;
+    }
+  }
+
+  $('form.contact-me').on('submit', function(e) {
+    e.preventDefault();
+
+    var url = $(this).attr('action'),
+        method = $(this).attr('method'),
+        data = {};
+
+    $(this).find('[name]').each(function() {
+      var name = $(this).attr('name'),
+          value = $(this).val();
+          data[name] = value;
+    });
+
+    var mailRex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var contactEmail = $('input[name=email]').val();
+
+    if( !validate(requiredFields) ) {
+      $('#feedback').css('color', 'red');
+      $('#feedback').html("Please complete all required fields.");
+    } else if ( !contactEmail.match(mailRex) ) {
+      $('#feedback').css('color', 'red');
+      $('#feedback').html("Please enter a valid email address.");
+    } else {
+      // AJAX Code To Submit Form.
+      $.ajax({
+        url: url,
+        type: method,
+        data: { json: JSON.stringify(data) },
+        success: function(html) {
+          $('form.contact-me *[name]').each(function() {
+            $(this).attr("disabled", true);
+          });
+          $('#feedback').css('color', 'black');
+          $('#feedback').html(html);
+        }
+      });
+    }
+    return false;
+  }); // end form.on.submit
 
 }); // end $(document).ready()

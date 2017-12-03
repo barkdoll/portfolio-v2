@@ -27,8 +27,8 @@ gulp.task('copyRoot', () => {
     .pipe(gulp.dest('build'));
   gulp.src('src/*.php')
     .pipe(gulp.dest('build'));
-  gulp.src('src/templates/*.htm')
-  .pipe(gulp.dest('build/templates'));
+  gulp.src('src/templates/*')
+    .pipe(gulp.dest('build/templates'));
 });
 
 gulp.task('copyFonts', () => {
@@ -87,7 +87,7 @@ gulp.task('php', () => {
     bin: 'C:/MAMP/bin/php/php7.1.5/php.exe',
     ini: 'C:/MAMP/bin/php/php7.1.5/php.ini',
     port: 8000,
-    base: 'C:/Users/mango/dev/portfolio-v2/build',
+    base: 'C:/Users/mango/dev/portfolio-v2/build/',
     livereload: true
   });
 });

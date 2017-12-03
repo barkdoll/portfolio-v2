@@ -10,10 +10,12 @@
   <section id="primary">
     <header id="banner"></header>
     <main>
-      <?php include 'templates/about.htm'; ?>
-      <?php include 'templates/now.htm'; ?>
-      <?php include 'templates/portfolio.htm'; ?>
-      <?php include 'templates/contact.htm'; ?>
+      <?php
+        include 'templates/about.htm';
+        include 'templates/now.htm';
+        include 'templates/portfolio.htm';
+        include 'templates/contact.php';
+      ?>
       <div class="top-btn">
         <a href="#top">FROM THE TOP <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
       </div>
