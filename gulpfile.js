@@ -9,6 +9,7 @@ rename = require('gulp-rename'),
 server = require('gulp-webserver'),
 php = require('gulp-connect-php'),
 browserSync = require('browser-sync');
+gutil = require('gulp-util');
 
 /* -- TOP LEVEL FUNCTIONS --
   gulp.task - define tasks
@@ -44,12 +45,15 @@ gulp.task('imageMin', () => {
 });
 
 // Concatenate and minify the Javascripts!
-gulp.task('javascript', () => {
+gulp.task('js', () => {
   gulp.src('src/js/*.js')
-    .pipe(babel())
-    .pipe(concat('script.js'))
-    // .pipe(uglify())
-    .pipe(gulp.dest('build/js'));
+    // make sure you npm install babel-preset-es2015 and babel-core!
+    .pipe(babel({
+      "presets": ["es2015"]
+    }))
+    .pipe(concat('script.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('build/js'))
 });
 
 gulp.task('css', () => {
@@ -63,19 +67,18 @@ gulp.task('sass', () => {
   gulp.src('src/sass/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCSS())
-    .pipe(
-      rename('style.css')
-    )
+    .pipe(rename('style.css'))
     .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('default', ['init', 'javascript', 'css', 'sass', 'copyRoot', 'copyFonts']);
+gulp.task('default', ['init', 'js', 'css', 'sass', 'copyRoot', 'copyFonts']);
 
 // Watches for changes to avoid repetetive running of gulp command
 gulp.task('watch', () => {
   gulp.watch('src/img/*', ['imageMin']);
-  gulp.watch('src/js/*.js', ['javascript']);
-  gulp.watch('src/css/*.css', ['css'])
+  gulp.watch('src/js/*.js', ['concat-js']);
+  gulp.watch('src/js/process/script.js', ['minify-js']);
+  gulp.watch('src/css/*.css', ['css']);
   gulp.watch('src/sass/*.scss', ['sass']);
   gulp.watch('src/*.htm', ['copyHTML']);
 });
@@ -95,8 +98,6 @@ gulp.task('php', () => {
 gulp.task('end-php', function() {
     php.closeServer();
 });
-
-
 
 
 // Server with gulp-webserver

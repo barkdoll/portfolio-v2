@@ -34,7 +34,7 @@ function portfolio(parentContainer, jsonPath) {
 							subtitle.className = 'subtitle'
 							subtitle.textContent = proj.subtitle;
 							append(column, subtitle);
-					}
+					} // endif
 
 
 				  var card = createNode('div');
@@ -104,7 +104,7 @@ function portfolio(parentContainer, jsonPath) {
 						append(detail, linkCell);
 				    append(linkCell, gitLink);
 				});
-			})
+			})  // end .then()
 			.catch(function(error) {
 				var column = createNode('div');
 				column.className = 'column';
@@ -117,7 +117,7 @@ function portfolio(parentContainer, jsonPath) {
 				append(PortfolioSection, column);
 				append(column, Problem);
 				// console.log(error);
-			});
+			}); // end .catch
 } // end portfolio()
 
 portfolio('pf-container', './portfolio.json');

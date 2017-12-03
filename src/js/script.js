@@ -158,12 +158,14 @@ jQuery(document).ready(function($){
         url: url,
         type: method,
         data: { json: JSON.stringify(data) },
-        success: function(html) {
-          $('form.contact-me *[name]').each(function() {
-            $(this).attr("disabled", true);
-          });
-          $('#feedback').css('color', 'black');
-          $('#feedback').html(html);
+        success: function(response) {
+          if(response == 'Your message was sent!') {
+            $('#feedback').css('color', 'black');
+            $('form.contact-me *[name]').each(function() {
+              $(this).attr("disabled", true);
+            });
+          }
+          $('#feedback').html(response);
         }
       });
     }
