@@ -32,17 +32,6 @@
     "gitLink": "https://github.com/barkdoll/daijirin-scraper#readme",
 		"publicSrc": true
   },
-  {
-    "name": "Pokevue",
-		"subtitle": "",
-		"description": "An online, interactive, animated pokedex built with Vue.js and the PokeAPI.",
-    "projID": "pokevue",
-    "image": "img/rac-screenshot.png",
-    "liveUrl": "https://jessebarkdoll.com/projID",
-		"stack": [ "vuejs", "css3", "atom" ],
-    "gitLink": "",
-		"publicSrc": false
-  },
 	{
 		"name": "Bowling Calculator",
 		"subtitle": "",
