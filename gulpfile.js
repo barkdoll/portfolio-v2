@@ -24,9 +24,7 @@ gulp.task('init', () => {
 
 // Copy all HMTL files
 gulp.task('copyRoot', () => {
-  gulp.src('src/*.htm')
-    .pipe(gulp.dest('build'));
-  gulp.src('src/*.php')
+  gulp.src('src/*')
     .pipe(gulp.dest('build'));
   gulp.src('src/templates/*')
     .pipe(gulp.dest('build/templates'));
