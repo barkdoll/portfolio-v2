@@ -51,7 +51,9 @@ gulp.task('js', () => {
     }))
     .pipe(concat('script.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('build/js'))
+    .pipe(gulp.dest('build/js'));
+  gulp.src('src/js/static/*.js')
+    .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('css', () => {

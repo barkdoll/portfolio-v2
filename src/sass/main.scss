@@ -336,12 +336,12 @@ td.more-left {
   padding-left : 35px;
 }
 
-a.github-icon > i {
+a.github-icon > svg {
   color : #555;
   transition: .2s all;
 }
 
-a.github-icon:hover > i {
+a.github-icon:hover > svg {
   color : #1abc9c;
   transform: translateY(-.3rem);
 }
@@ -510,21 +510,20 @@ a.github-icon:hover > i {
 .stack {
   display         : flex;
   width           : 100%;
-  margin          : 0 0 .75em;
-  font-family     : 'devicon';
-  font-size       : 2.25vw;
+  margin          : .75rem 0;
+  font-size: 2.5rem;
   flex-flow       : row wrap;
   justify-content : center;
 
-  i {
-    padding    : .75em 10px .25em;
+  svg {
     color      : hsl(161, 100%, 41%);
     transition : .2s transform;
+    margin: 0 .75rem;
   }
 
-  i:hover {
+  svg:hover {
     color     : rgb(44, 44, 44);
-    transform : translateY(-.5rem);
+    transform : translateY(-.35rem);
   }
 }
 
@@ -551,34 +550,10 @@ a.github-icon:hover > i {
   transform         : rotateY(180deg) scaleX(-1) rotate(-2deg);
 }
 
-.github:before,
-.gitlab:before,
-.project:before {
-  font-weight : normal;
+.git-link-icon {
+  margin-right: 7px;
 }
 
-.git-link.github:before {
-  content       : '\f09b';
-  padding-right : .5rem;
-  font-family   : 'FontAwesome';
-  font-size     : 1.6em;
-}
-
-.git-link.gitlab:before {
-  content       : '\f296';
-  padding-right : .5rem;
-  font-family   : 'FontAwesome';
-  font-size     : 1.4em;
-}
-
-.git-link.project:before {
-  content       : '\f1e2';
-  display       : inline-block;
-  padding-right : .5rem;
-  font-family   : 'FontAwesome';
-  font-size     : 1.4em;
-  transform     : rotate(-15deg);
-}
 
 /* END PORTFOLIO STYLES */
 
@@ -615,11 +590,10 @@ a.github-icon:hover > i {
   }
 
   .stack {
-    padding-top : 0;
-    font-size   : 3em;
+    margin: .5rem 0 1.5rem;
 
-    i {
-      padding : .25em 10px 0;
+    svg {
+
     }
   }
 
@@ -845,12 +819,12 @@ a.github-icon:hover > i {
     font-size : 1.5em;
   }
 
-  a.github-icon:hover i {
+  a.github-icon:hover > svg {
     transform: none;
   }
 
   .stack {
-    i:hover {
+    svg:hover {
       transform : translateY(0);
     }
   }

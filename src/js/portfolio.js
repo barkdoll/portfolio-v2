@@ -1,6 +1,64 @@
 function portfolio(parentContainer, jsonPath) {
+
+	var Icons = {
+	  github: {
+			name: 'GitHub',
+			faClass: 'fab fa-github'
+		},
+	  gitlab: {
+			name: 'GitLab',
+			faClass: 'fab fa-gitlab'
+		},
+	  html: {
+			name: 'HTML',
+			faClass: 'fab fa-html5'
+		},
+	  css: {
+			name: 'CSS',
+			faClass: 'fab fa-css3-alt'
+		},
+	  js: {
+			name: 'Javascript',
+			faClass: 'fab fa-js'
+		},
+	  vue: {
+			name: 'VueJS',
+			faClass: 'fab fa-vuejs'
+		},
+	  node: {
+			name: 'Node.js',
+			faClass: 'fab fa-node-js'
+		},
+	  twitter: {
+			name: 'Twitter',
+			faClass: 'fab fa-twitter'
+		},
+		mysql: {
+			name: 'MySQL',
+			faClass: 'fas fa-database'
+		},
+	  linode: {
+			name: 'Linode',
+			faClass: 'fab fa-linode'
+		},
+	  linux: {
+			name: 'Linux',
+			faClass: 'fab fa-linux'
+		},
+		python: {
+			name: 'Python',
+			faClass: 'fab fa-python'
+		},
+		getName: function(i) {
+			return this[i].name;
+		},
+		getClass: function(i) {
+			return this[i].faClass;
+		}
+	}
+
 	function createNode(element) {
-			return document.createElement(element);
+		return document.createElement(element);
 	}
 
 	function append(parent, el) {
@@ -78,8 +136,8 @@ function portfolio(parentContainer, jsonPath) {
 				    stack.className = 'stack';
 				    proj.stack.forEach((tech) => {
 							var icon = createNode('i');
-								icon.className = 'devicon-' + tech + '-plain';
-								icon.title = tech;
+								icon.className = Icons.getClass(tech);
+								icon.title = Icons.getName(tech);
 							stack.append(icon);
 				    });
 				    append(detail, stack);
@@ -93,16 +151,22 @@ function portfolio(parentContainer, jsonPath) {
 					if (proj.publicSrc === true) {
 							linkCell.href = proj.gitLink;
 							linkCell.target = '_blank';
-							gitLink.textContent = 'View the Code'
-							if (proj.gitLink.match(/github/)) gitLink.className += ' github';
-							else if (proj.gitLink.match(/gitlab/)) gitLink.className += ' gitlab';
+							var gitLinkIcon = createNode('i');
+								gitLinkIcon.className = 'git-link-icon far fa-code-merge';
+							var linkTxt = createNode('span');
+								linkTxt.textContent = 'View the Code';
 					}	else {
 							linkCell.href = proj.liveUrl;
 							gitLink.className += ' project';
-							gitLink.textContent = 'View Project'
+							var gitLinkIcon = createNode('i');
+								gitLinkIcon.className = 'git-link-icon fal fa-paper-plane';
+							var linkTxt = createNode('span');
+								linkTxt.textContent = 'View Project';
 					} // endif;
 						append(detail, linkCell);
-				    append(linkCell, gitLink);
+				    	append(linkCell, gitLink);
+								append(gitLink, gitLinkIcon);
+								append(gitLink, linkTxt);
 				});
 			})  // end .then()
 			.catch(function(error) {
@@ -113,7 +177,7 @@ function portfolio(parentContainer, jsonPath) {
 				var Problem = createNode('p');
 				Problem.style.color = 'red';
 				Problem.style.fontWeight = 'bold';
-				Problem.textContent = 'It looks like Jesse\'s site is having trouble grabbing his portfolio data. He may be aware of the problem, but feel free to contact him about it if you are feeling like the hero-type today.'
+				Problem.textContent = 'It looks like Jesse\'s site is having trouble grabbing his portfolio data. This can usually be fixed by using Google Chrome or Mozilla Firefox to visit his site, but feel free to contact him about it if you are feeling like the hero-type today.'
 				append(PortfolioSection, column);
 				append(column, Problem);
 				// console.log(error);

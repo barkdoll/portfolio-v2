@@ -17,7 +17,7 @@
         include 'templates/contact.php';
       ?>
       <div class="top-btn">
-        <a href="#top">FROM THE TOP <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+        <a href="#primary">FROM THE TOP <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
       </div>
     </main>
 
