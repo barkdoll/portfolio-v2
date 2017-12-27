@@ -1,5 +1,5 @@
 *.htm linguist-vendored
-*.css linguist-vendored
-*.js linguist-vendored
 src/fonts/* linguist-vendored
 src/img/* linguist-vendored
+src/js/static/* linguist-vendored
+build/* linguist-vendored
